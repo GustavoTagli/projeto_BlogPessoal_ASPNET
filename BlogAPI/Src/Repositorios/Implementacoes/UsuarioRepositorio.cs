@@ -61,7 +61,6 @@ namespace BlogAPI.Src.Repositorios.Implementacoes
                     Tipo = usuario.Tipo
                 });
             await _contexto.SaveChangesAsync();
-
         }
 
         #endregion

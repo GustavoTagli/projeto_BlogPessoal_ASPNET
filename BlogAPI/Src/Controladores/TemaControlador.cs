@@ -31,6 +31,12 @@ namespace BlogAPI.Src.Controladores
 
         #region Métodos
 
+        /// <summary>
+        /// Pegar todas os Temas
+        /// </summary>
+        /// <returns>ActionResult</returns>
+        /// <response code="200">Retorna os temas</response>
+        /// <response code="204">Nenhum tema cadastrado</response>
         [HttpGet]
         [Authorize]
         public async Task<ActionResult> PegarTodosTemasAsync()
@@ -40,6 +46,13 @@ namespace BlogAPI.Src.Controladores
             return Ok(lista);
         }
 
+        /// <summary>
+        /// Pegar Tema pelo Id
+        /// </summary>
+        /// <param name="idTema">Id do tema</param>
+        /// <returns>ActionResult</returns>
+        /// <response code="200">Retorna o tema</response>
+        /// <response code="404">Id não existente</response>
         [HttpGet("id/{idTema}")]
         [Authorize]
         public async Task<ActionResult> PegarTemaPeloIdAsync([FromRoute] int idTema)
@@ -54,6 +67,21 @@ namespace BlogAPI.Src.Controladores
             }
         }
 
+        /// <summary>
+        /// Criar novo Tema
+        /// </summary>
+        /// <param name="tema">Construtor para criar tema</param>
+        /// <returns>ActionResult</returns>
+        /// <remarks>
+        /// Exemplo de requisição:
+        ///
+        /// POST /api/Temas
+        /// {
+        /// "descricao": "Programação"
+        /// }
+        ///
+        /// </remarks>
+        /// <response code="201">Retorna o tema criado</response>
         [HttpPost]
         [Authorize]
         public async Task<ActionResult> NovoTemaAsync([FromBody] Tema tema)
@@ -62,6 +90,23 @@ namespace BlogAPI.Src.Controladores
             return Created($"api/Temas", tema);
         }
 
+        /// <summary>
+        /// Atualizar Tema
+        /// </summary>
+        /// <param name="tema">Contrutor para atualizar tema</param>
+        /// <returns>ActionResult</returns>
+        /// <remarks>
+        /// Exemplo de requisição:
+        ///
+        /// POST /api/Usuarios/cadastrar
+        /// {
+        /// "id": "1",
+        /// "descricao": "Linguagens de programação"
+        /// }
+        ///
+        /// </remarks>
+        /// <response code="200">Retorna o tema atualizado</response>
+        /// <response code="400">Má requisição</response>
         [HttpPut]
         [Authorize(Roles ="ADMINISTRADOR")]
         public async Task<ActionResult> AtualizarTema([FromBody] Tema tema)
@@ -77,6 +122,13 @@ namespace BlogAPI.Src.Controladores
             }
         }
 
+        /// <summary>
+        /// Excluir Tema
+        /// </summary>
+        /// <param name="idTema">Id do tema</param>
+        /// <returns>ActionResult</returns>
+        /// <response code="204">Tema excluido</response>
+        /// <response code="404">Id não existente</response>
         [HttpDelete("deletar/{idTema}")]
         [Authorize(Roles ="ADMINISTRADOR")]
         public async Task<ActionResult> DeletarTema([FromRoute] int idTema)

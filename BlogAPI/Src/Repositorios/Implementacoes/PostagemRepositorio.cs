@@ -8,6 +8,12 @@ using System.Threading.Tasks;
 
 namespace BlogAPI.Src.Repositorios.Implementacoes
 {
+    /// <summary>
+    /// <para>Resumo: Classe responsavel por implementar IPostagem</para>
+    /// <para>Criado por: Gustavo</para>
+    /// <para>Versão: 1.0</para>
+    /// <para>Data: 09/08/2022</para>
+    /// </summary>
     public class PostagemRepositorio : IPostagem
     {
         #region Atributos
